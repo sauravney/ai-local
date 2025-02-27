@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import React from "react";
 
 function AddCourse() {
@@ -16,7 +17,9 @@ function AddCourse() {
           Create new Course with AI and learn.
         </p>
       </div>
-      <Button>+ Create AI Course</Button>
+      <Link href={"/create-course"}>
+        <Button>+ Create AI Course</Button>
+      </Link>
     </div>
   );
 }
