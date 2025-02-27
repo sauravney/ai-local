@@ -11,6 +11,11 @@ import SelectOption from "./_components/SelectOption";
 import { UserInputContext } from "../_context/UserInputContext";
 import { GenerateCourseLayout_AI } from "@/configs/AiModel";
 import LoadingDialog from "./_components/LoadingDialog";
+import { db } from "@/configs/db";
+import { CourseList } from "@/configs/schema";
+import uuid4 from "uuid4";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 function CreateCourse() {
   const StepperOptions = [
@@ -31,12 +36,15 @@ function CreateCourse() {
     },
   ];
   const { userCourseInput, setUserCourseInput } = useContext(UserInputContext);
-
   const [loading, setLoading] = useState(false);
-
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const { user } = useUser();
+
+  const router = useRouter();
+
   useEffect(() => {
-    console.log(userCourseInput);
+    // console.log(userCourseInput);
   }, [userCourseInput]);
 
   const checkStatus = () => {
@@ -86,12 +94,31 @@ function CreateCourse() {
       userCourseInput?.noOfChapter +
       ", in JSON format";
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT;
-    console.log(FINAL_PROMPT);
+    // console.log(FINAL_PROMPT);
 
     const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
-    console.log(result.response?.text());
-    console.log(JSON.parse(result.response?.text()));
+    // console.log(result.response?.text());
+    // console.log(JSON.parse(result.response?.text()));
     setLoading(false);
+    saveCourseLayoutInDb(JSON.parse(result.response?.text()));
+  };
+
+  const saveCourseLayoutInDb = async (courseLayout) => {
+    var id = uuid4();
+    setLoading(true);
+    const result = await db.insert(CourseList).values({
+      courseId: id,
+      name: userCourseInput?.topic,
+      level: userCourseInput?.level,
+      category: userCourseInput?.category,
+      courseOutput: courseLayout,
+      createdBy: user?.primaryEmailAddress?.emailAddress,
+      userName: user?.fullName,
+      userProfileImage: user?.imageUrl,
+    });
+    // console.log("Finish");
+    setLoading(false);
+    router.replace("/create-course/" + id);
   };
 
   return (
