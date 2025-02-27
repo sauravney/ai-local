@@ -16,14 +16,14 @@ const SelectCategory = () => {
       <h2 className="my-5">Select the course category</h2>
       <div className="grid grid-cols-3 gap-10  ">
         {CategoryList.map((item, index) => (
-          <div
+          <div key={item.id}
             className={`flex flex-col p-5 border items-center rounded-xl hover:border-primary hover:bg-blue-50 cursor-pointer ${
               userCourseInput?.category == item.name &&
               "border-primary bg-blue-250"
             } `}
             onClick={() => handleCategoryChange(item.name)}
           >
-            <Image src={item.icon} rel={"category"} width={50} height={50} />
+            <Image src={item.icon} rel={"category"} width={50} height={50} alt="" />
             <h2>{item.name}</h2>
           </div>
         ))}
