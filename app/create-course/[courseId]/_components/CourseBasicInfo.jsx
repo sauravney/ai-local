@@ -9,6 +9,32 @@ import { eq } from "drizzle-orm";
 import Link from "next/link";
 
 const CourseBasicInfo = ({ course, refreshData }) => {
+  const [selectedFile, setSelectedFile] = useState();
+
+  const onFileSelected = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "aicoursegenerator");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dx3vqbb9r/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const uploadedImageData = await res.json();
+    // console.log(uploadedImageData);
+    setSelectedFile(uploadedImageData.secure_url);
+    const imgUrl = uploadedImageData.secure_url;
+    await db
+      .update(CourseList)
+      .set({ courseBanner: imgUrl })
+      .where(eq(CourseList.id, course?.id));
+    // console.log("Course banner updated successfully!");
+  };
+
   return (
     <div className="p-10 border rounded-xl shadow-sm mt-5">
       <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
@@ -34,10 +60,16 @@ const CourseBasicInfo = ({ course, refreshData }) => {
         <div>
           <label htmlFor="upload-image">
             <Image
-              src={"/course-cover.svg"}
+              src={selectedFile ? selectedFile : "/course-cover.svg"}
               width={600}
               height={300}
               className="w-ful rounded-xl h-[250px] object-cover cursor-pointer"
+            />
+            <input
+              type="file"
+              id="upload-image"
+              className="opacity-0"
+              onChange={onFileSelected}
             />
           </label>
         </div>
