@@ -1,23 +1,42 @@
 import Image from "next/image";
 import React from "react";
 import { HiMiniEllipsisVertical, HiOutlineBookOpen } from "react-icons/hi2";
+import DropdownOption from "./DropdownOption";
+import { CourseList } from "@/configs/schema";
+import { eq } from "drizzle-orm";
+import Link from "next/link";
 
 function CourseCard({ course }) {
+  const handleOnDelete = async () => {
+    const resp = await db
+      .delete(CourseList)
+      .where(eq(CourseList.id, course?.id))
+      .returning({ id: CourseList?.id });
+
+    if (resp) {
+      refreshData();
+    }
+  };
   return (
     <div
       className="shadow-sm rounded-lg border p-2
-    hover:scale-105 transition-all cursor-pointer mt-4"
+     cursor-pointer mt-4"
     >
-      <Image
-        src={course?.courseBanner}
-        width={300}
-        height={200}
-        alt="Course Banner"
-        className="w-full h-[200px] object-cover rounded-lg"
-      />
+      <Link href={"/course/" + course?.courseId}>
+        <Image
+          src={course?.courseBanner}
+          width={300}
+          height={200}
+          className="w-full h-[200px] object-cover rounded-lg"
+        />
+      </Link>
       <div className="p-2">
-        <h2 className="text-md font-medium">
+        <h2 className="text-md font-medium flex justify-between items-center ">
           {course?.courseOutput?.course?.name}
+
+          <DropdownOption handleOnDelete={() => handleOnDelete()}>
+            <HiMiniEllipsisVertical />
+          </DropdownOption>
         </h2>
         <p className="text-sm text-gray-400 my-1">{course?.category}</p>
 

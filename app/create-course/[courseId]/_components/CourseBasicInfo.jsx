@@ -8,15 +8,14 @@ import { CourseList } from "@/configs/Schema";
 import { eq } from "drizzle-orm";
 import Link from "next/link";
 
-const CourseBasicInfo = ({ course, refreshData }) => {
+const CourseBasicInfo = ({ course, refreshData, edit = true }) => {
   const [selectedFile, setSelectedFile] = useState();
 
-  useEffect(()=>{
-    if (course)
-    {
-      setSelectedFile(course?.courseBanner)
+  useEffect(() => {
+    if (course) {
+      setSelectedFile(course?.courseBanner);
     }
-  },[course])
+  }, [course]);
 
   const onFileSelected = async (event) => {
     const file = event.target.files[0];
@@ -48,10 +47,12 @@ const CourseBasicInfo = ({ course, refreshData }) => {
         <div>
           <h2 className="font-bold text-3xl">
             {course?.courseOutput?.course?.name}{" "}
-            <EditCourseBasicInfo
-              course={course}
-              refreshData={() => refreshData(true)}
-            />
+            {edit && (
+              <EditCourseBasicInfo
+                course={course}
+                refreshData={() => refreshData(true)}
+              />
+            )}
           </h2>
           <p className="text-sm text-gray-400 mt-3">
             {course?.courseOutput?.course?.description}
@@ -72,12 +73,14 @@ const CourseBasicInfo = ({ course, refreshData }) => {
               height={300}
               className="w-ful rounded-xl h-[250px] object-cover cursor-pointer"
             />
-            <input
-              type="file"
-              id="upload-image"
-              className="opacity-0"
-              onChange={onFileSelected}
-            />
+            {edit && (
+              <input
+                type="file"
+                id="upload-image"
+                className="opacity-0"
+                onChange={onFileSelected}
+              />
+            )}
           </label>
         </div>
       </div>

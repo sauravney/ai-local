@@ -94,11 +94,11 @@ function CreateCourse() {
       userCourseInput?.noOfChapter +
       ", in JSON format";
     const FINAL_PROMPT = BASIC_PROMPT + USER_INPUT_PROMPT;
-    console.log(FINAL_PROMPT);
+    // console.log(FINAL_PROMPT);
 
     const result = await GenerateCourseLayout_AI.sendMessage(FINAL_PROMPT);
-    console.log(result.response?.text());
-    console.log(JSON.parse(result.response?.text()));
+    // console.log(result.response?.text());
+    // console.log(JSON.parse(result.response?.text()));
     setLoading(false);
     saveCourseLayoutInDb(JSON.parse(result.response?.text()));
   };
