@@ -7,7 +7,7 @@ const ChapterList = ({ course, refreshData, edit = true }) => {
     <div className="mt-3 ">
       <h2 className="font-medium text-xl "> Chapter's</h2>
       <div className="mt-2">
-        {course?.courseOutput?.course?.chapters.map((chapter, index) => (
+        {course?.courseOutput?.course?.chapters?.map((chapter, index) => (
           <div className="p-5 border rounded-lg mt-2 flex items-center justify-between cursor-pointer">
             <div className="flex gap-5 items-center">
               <h2 className="bg-purple-300 flex-none h-10 w-10 rounded-full text-center p-2">

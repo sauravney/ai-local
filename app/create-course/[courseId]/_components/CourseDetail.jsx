@@ -31,7 +31,7 @@ const CourseDetail = ({ course }) => {
           <div>
             <h2 className="text-xs text-gray-500">No of Chapter </h2>
             <h2 className="font-medium text-lg">
-              {course?.courseOutput?.course?.chapters.length}
+              {course?.courseOutput?.course?.chapters?.length}
             </h2>
           </div>
         </div>
