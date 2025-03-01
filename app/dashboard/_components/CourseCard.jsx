@@ -5,8 +5,9 @@ import DropdownOption from "./DropdownOption";
 import { CourseList } from "@/configs/schema";
 import { eq } from "drizzle-orm";
 import Link from "next/link";
+import { db } from "@/configs/db";
 
-function CourseCard({ course }) {
+function CourseCard({ course, refreshData }) {
   const handleOnDelete = async () => {
     const resp = await db
       .delete(CourseList)
@@ -43,7 +44,7 @@ function CourseCard({ course }) {
         <div className="flex items-center justify-between">
           <h2 className="flex gap-2 items-center p-1 bg-purple-50 text-primary text-sm rounded-sm">
             <HiOutlineBookOpen />
-            {course?.courseOutput?.course.chapters.length} Chapters
+            {course?.courseOutput?.course?.chapters?.length} Chapters
           </h2>
           <h2 className="text-sm bg-purple-50 text-primary p-1 rounded-sm">
             {course?.level}
