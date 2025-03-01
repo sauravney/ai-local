@@ -7,7 +7,7 @@ import { eq } from "drizzle-orm";
 import Link from "next/link";
 import { db } from "@/configs/db";
 
-function CourseCard({ course, refreshData }) {
+function CourseCard({ course, refreshData, displayUser = false }) {
   const handleOnDelete = async () => {
     const resp = await db
       .delete(CourseList)
@@ -35,9 +35,11 @@ function CourseCard({ course, refreshData }) {
         <h2 className="text-md font-medium flex justify-between items-center ">
           {course?.courseOutput?.course?.name}
 
-          <DropdownOption handleOnDelete={() => handleOnDelete()}>
-            <HiMiniEllipsisVertical />
-          </DropdownOption>
+          {!displayUser && (
+            <DropdownOption handleOnDelete={() => handleOnDelete()}>
+              <HiMiniEllipsisVertical />
+            </DropdownOption>
+          )}
         </h2>
         <p className="text-sm text-gray-400 my-1">{course?.category}</p>
 
@@ -50,6 +52,17 @@ function CourseCard({ course, refreshData }) {
             {course?.level}
           </h2>
         </div>
+        {displayUser && (
+          <div className="flex gap-2 items-center mt-2">
+            <Image
+              src={course?.userProfileImage}
+              width={35}
+              height={35}
+              className="rounded-full"
+            />
+            <h2 className="text-sm">{course?.userName}</h2>
+          </div>
+        )}
       </div>
     </div>
   );
