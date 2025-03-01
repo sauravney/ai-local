@@ -1,6 +1,6 @@
 "use client";
 import { db } from "@/configs/db";
-import { CourseList } from "@/configs/Schema";
+import { Chapters, CourseList } from "@/configs/Schema";
 import { useUser } from "@clerk/nextjs";
 import { and, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
@@ -10,11 +10,14 @@ import ChapterList from "./_components/ChapterList";
 import { Button } from "@/components/ui/button";
 import { GenerateChapterContent_AI } from "@/configs/AiModel";
 import LoadingDialog from "../_components/LoadingDialog";
+import service from "@/configs/service";
+import { useRouter } from "next/navigation";
 
 function CourseLayout({ params }) {
   const { user } = useUser();
   const [course, setCourse] = useState([]);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     console.log(params);
     params && GetCourse();
@@ -45,18 +48,37 @@ function CourseLayout({ params }) {
         chapter?.name +
         ", in JSON Format with list of array with field as title, explaination on given chapter in detail, Code Example(Code field in <predoce> format) if applicable";
       console.log(PROMPT);
-      if (index < 3) {
-        try {
-          const result = await GenerateChapterContent_AI.sendMessage(PROMPT);
-          console.log(result.response?.text());
-          //Generate video url
-          //save chapter contet+url
-          setLoading(false);
-        } catch (e) {
-          setLoading(false);
-          console.log(e);
-        }
+      // if (index < 3) {
+      try {
+        let videoId = "";
+        //Generate video url
+        service.getVideos(course?.name + ":" + chapter?.name).then((resp) => {
+          console.log(resp);
+          videoId = resp[0]?.id?.videoId;
+        });
+        //generate content
+        const result = await GenerateChapterContent_AI.sendMessage(PROMPT);
+        console.log(result?.response?.text());
+
+        const content = JSON.parse(result?.response?.text());
+
+        //save chapter contet+url
+        await db.insert(Chapters).values({
+          chapterId: index,
+          courseId: course?.courseId,
+          content: content,
+          videoId: videoId,
+        });
+        setLoading(false);
+      } catch (e) {
+        setLoading(false);
+        console.log(e);
       }
+      await db.update(CourseList).set({
+        publish: true,
+      });
+      router.replace("/create-course/" + course?.courseId + "/finish");
+      // }
     });
   };
 

@@ -11,6 +11,13 @@ import Link from "next/link";
 const CourseBasicInfo = ({ course, refreshData }) => {
   const [selectedFile, setSelectedFile] = useState();
 
+  useEffect(()=>{
+    if (course)
+    {
+      setSelectedFile(course?.courseBanner)
+    }
+  },[course])
+
   const onFileSelected = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
