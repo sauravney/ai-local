@@ -61,9 +61,9 @@ const CourseBasicInfo = ({ course, refreshData, edit = true }) => {
             {" "}
             <HiOutlinePuzzlePiece /> {course?.category}
           </h2>
-          <Link href={"/course/" + course?.courseId + "/start"}>
+          {!edit &&<Link href={"/course/" + course?.courseId + "/start"}>
             <Button className="w-full mt-5 cursor-pointer">Start</Button>
-          </Link>
+          </Link>}
         </div>
         <div>
           <label htmlFor="upload-image">
