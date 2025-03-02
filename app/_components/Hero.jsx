@@ -1,11 +1,14 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React from "react";
+import { HiChevronDoubleRight } from "react-icons/hi";
 
 const Hero = () => {
   return (
-    <section className="bg-gray-900 text-white">
-      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:items-center">
+    <section className="">
+      <div className="mx-auto max-w-screen-xl px-4 pt-32 pb-10 lg:flex lg:items-center">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+          <h1 className="bg-gradient-to-r from-[#2563EB] via-[#6B46C1] to-[#9333EA] bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
             AI Course Generator
             <span className="sm:block">
               {" "}
@@ -13,18 +16,21 @@ const Hero = () => {
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed text-gray-600">
             Unlock personalized education with AI-driven course creation. Tailor
             your learning journey to fit unique goals and pace.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              className="block w-full rounded-sm border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:ring-3 focus:outline-hidden sm:w-auto"
-              href="#"
-            >
-              Get Started
-            </a>
+          <div className="mt-20 flex flex-wrap justify-center gap-4">
+            <Link href={"/dashboard/explore"}>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#4F46E5] to-[#9333EA] text-white font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-all"
+              >
+                Explore Now
+                <HiChevronDoubleRight className="text-xl ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

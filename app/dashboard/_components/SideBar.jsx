@@ -45,7 +45,9 @@ function SideBar() {
   const path = usePathname();
   return (
     <div className="fixed h-full md:w-64 p-5 shadow-md">
-      <Image src={"/logo.svg"} width={160} height={100} />
+      <Link className="flex items-center gap-2 cursor-pointer" href={"/"}>
+        <Image src={"/logo.svg"} width={160} height={100} />
+      </Link>
       <hr className="my-5" />
       <ul>
         {menu.map((item, index) => (
