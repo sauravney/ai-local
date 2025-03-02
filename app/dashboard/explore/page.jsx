@@ -15,8 +15,11 @@ function Explore() {
   }, [pageIndex]);
 
   const GetAllCourse = async () => {
-    const result = await db.select().from(CourseList).limit(9).offset(pageIndex*9);
-    console.log(result);
+    const result = await db
+      .select()
+      .from(CourseList)
+      .limit(9)
+      .offset(pageIndex * 9);
     setCourseList(result);
   };
 

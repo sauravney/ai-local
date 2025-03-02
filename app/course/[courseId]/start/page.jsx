@@ -22,9 +22,8 @@ function CourseStart({ params }) {
       .select()
       .from(CourseList)
       .where(eq(CourseList?.courseId, params?.courseId));
-    console.log(result);
     setCourse(result[0]);
-    GetSelectedChapterContent(0)
+    GetSelectedChapterContent(0);
   };
 
   const GetSelectedChapterContent = async (chapterId) => {
@@ -38,7 +37,6 @@ function CourseStart({ params }) {
         )
       );
     setChapterContent(result[0]);
-    console.log(result);
   };
 
   return (

@@ -64,9 +64,9 @@ function SideBar() {
         ))}
       </ul>
       <div className="absolute bottom-10 w-[80%]">
-        <Progress value={(userCourseList?.length / 5) * 100} />
+        <Progress value={(userCourseList?.length / 3) * 100} />
         <h2 className="text-sm my-2">
-          {userCourseList?.length} Out of 5 Courses Created
+          {userCourseList?.length} Out of 3 Courses Created
         </h2>
         <h2 className="text-xs text-gray-500">
           Upgrade your plan for unlimited Courses.

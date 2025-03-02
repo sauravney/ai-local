@@ -34,7 +34,6 @@ function CourseLayout({ params }) {
         )
       );
     setCourse(result[0]);
-    console.log(result);
   };
 
   const GenerateChapterContent = () => {
