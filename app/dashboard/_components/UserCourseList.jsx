@@ -16,9 +16,6 @@ function UserCourseList() {
 
   const { user } = useUser();
 
-  useEffect(() => {
-    user && getUserCourses();
-  }, [user]);
   const getUserCourses = async () => {
     const result = await db
       .select()
@@ -29,6 +26,11 @@ function UserCourseList() {
     setCourseList(result);
     setUserCourseList(result);
   };
+
+  useEffect(() => {
+    user && getUserCourses();
+  }, [user]);
+
   return (
     <div className="mt-10">
       <h2 className="font-medium text-xl">My AI Courses</h2>

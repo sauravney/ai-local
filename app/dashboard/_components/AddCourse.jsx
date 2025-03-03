@@ -26,7 +26,9 @@ function AddCourse() {
           userCourseList?.length > 2 ? "/dashboard/upgrade" : "/create-course"
         }
       >
-        <Button>+ Create AI Course</Button>
+        <Button className="bg-gradient-to-r from-[#4F46E5] to-[#9333EA] text-white font-semibold px-5 py-2 rounded-full hover:opacity-90 transition-all">
+          + Create AI Course
+        </Button>
       </Link>
     </div>
   );

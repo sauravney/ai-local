@@ -20,10 +20,10 @@ const AboutUs = () => {
           content="AI courses, course generator, artificial intelligence, personalized learning"
         />
       </Head>
-      <div className="container mx-auto px-4 py-8 w-full">
-        <h1 className="text-2xl font-bold mb-4">About Us</h1>
-
-        <div className="mt-10 flex flex-wrap justify-around w-full">
+      <div className="container mx-auto px-8 py-8 w-full">
+        <h1 className="text-2xl font-bold mb-4">About</h1>
+        <p>Developed By us!</p>
+        <div className="mt-20 flex flex-wrap justify-center gap-10 w-full">
           <CreatorCard
             image="/myimage.jpeg"
             name="Saurav Mishra"

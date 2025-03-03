@@ -28,6 +28,7 @@ function CourseCard({ course, refreshData, displayUser = false }) {
           src={course?.courseBanner}
           width={300}
           height={200}
+          alt="o"
           className="w-full h-[200px] object-cover rounded-lg"
         />
       </Link>
@@ -58,6 +59,7 @@ function CourseCard({ course, refreshData, displayUser = false }) {
               src={course?.userProfileImage}
               width={35}
               height={35}
+              alt="o"
               className="rounded-full"
             />
             <h2 className="text-sm">{course?.userName}</h2>

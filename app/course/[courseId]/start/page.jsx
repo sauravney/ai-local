@@ -6,6 +6,7 @@ import { and, eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
 import ChapterListCard from "./_components/ChapterListCard";
 import ChapterContent from "./_components/ChapterContent";
+import Header from "./_components/Header";
 
 function CourseStart({ params }) {
   const [course, setCourse] = useState();
@@ -22,8 +23,10 @@ function CourseStart({ params }) {
       .select()
       .from(CourseList)
       .where(eq(CourseList?.courseId, params?.courseId));
+    console.log(result);
     setCourse(result[0]);
     GetSelectedChapterContent(0);
+    // setSelectedChapter(result[0].courseOutput.course.chapters[0]);
   };
 
   const GetSelectedChapterContent = async (chapterId) => {
@@ -37,21 +40,23 @@ function CourseStart({ params }) {
         )
       );
     setChapterContent(result[0]);
+    console.log(result);
   };
 
   return (
     <div>
+      <Header/>
       {/* Chapter List Sidebar */}
       <div className="fixed md:w-64 hidden md:block h-screen border-r shadow-sm">
-        <h2 className="font-medium text-lg bg-purple-300 p-4">
+        <h2 className="font-medium text-lg bg-gray-300/40 p-4">
           {course?.courseOutput?.course?.name}
         </h2>
         <div>
           {course?.courseOutput?.course?.chapters.map((chapter, index) => (
             <div
               key={index}
-              className={`cursor-pointer hover:bg-purple-50 ${
-                selectedChapter?.name == chapter?.name && "bg-purple-400"
+              className={`cursor-pointer hover:bg-gray-300/40 ${
+                selectedChapter?.name == chapter?.name && "bg-gray-300/40"
               } `}
               onClick={() => {
                 setSelectedChapter(chapter);
@@ -63,6 +68,7 @@ function CourseStart({ params }) {
           ))}
         </div>
       </div>
+      
       {/* Content */}
       <div className="md:ml-64">
         <ChapterContent chapter={selectedChapter} content={chapterContent} />

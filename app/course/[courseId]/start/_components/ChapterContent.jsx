@@ -29,7 +29,7 @@ function ChapterContent({ chapter, content }) {
             {/* <p className="whitespace-pre-wrap">{item?.explanation}</p> */}
             <ReactMarkdown>{item?.explanation}</ReactMarkdown>
             {item.codeExample && (
-              <div className="p-4 bg-black text-white rounded-md mt-3">
+              <div className="p-4 bg-gray-300/50 w-2/3 text-black rounded-md mt-3">
                 <pre>
                   <code>{item?.codeExample}</code>
                 </pre>

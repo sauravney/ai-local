@@ -1,6 +1,4 @@
 "use client";
-
-import Header from "@/app/_components/Header";
 import ChapterList from "@/app/create-course/[courseId]/_components/ChapterList";
 import CourseBasicInfo from "@/app/create-course/[courseId]/_components/CourseBasicInfo";
 import CourseDetail from "@/app/create-course/[courseId]/_components/CourseDetail";
@@ -9,6 +7,7 @@ import { db } from "@/configs/db";
 import { CourseList } from "@/configs/Schema";
 import { eq } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
+import Header from "./start/_components/Header";
 
 const Course = ({ params }) => {
   const [course, setCourse] = useState([]);
@@ -28,8 +27,8 @@ const Course = ({ params }) => {
 
   return (
     <div>
-      <Header />
       <div className="px-10 p-10 md:px-20 lg:px-44">
+        <Header />
         <CourseBasicInfo course={course} edit={false} />
         <CourseDetail course={course} />
         <ChapterList course={course} edit={false} />

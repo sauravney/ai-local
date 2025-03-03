@@ -11,7 +11,7 @@ const Footer = () => {
     { id: 2, name: "Terms & Conditions", path: "/terms" },
   ];
   return (
-    <footer className="mt-36 bg-white dark:bg-gray-900 p-10">
+    <footer className="bg-white dark:bg-gray-900 mt-5 p-10">
       <div className="mx-auto max-w-screen-xl">
         <div className="pt-16 border-t border-gray-100 sm:flex sm:items-center sm:justify-between dark:border-gray-800">
           <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">

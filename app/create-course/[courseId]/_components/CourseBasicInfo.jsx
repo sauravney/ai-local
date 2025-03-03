@@ -71,6 +71,7 @@ const CourseBasicInfo = ({ course, refreshData, edit = true }) => {
               src={selectedFile ? selectedFile : "/course-cover.svg"}
               width={600}
               height={300}
+              alt="Course Banner"
               className="w-ful rounded-xl h-[250px] object-cover cursor-pointer"
             />
             {edit && (

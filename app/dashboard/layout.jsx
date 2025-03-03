@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SideBar from "./_components/SideBar";
 import Header from "./_components/Header";
 import { UserCourseListContext } from "../_context/UserCourseListContext";
+import Footer from "./_components/Footer";
 
 function DashboardLayout({ children }) {
   const [userCourseList, setUserCourseList] = useState([]);
@@ -17,6 +18,7 @@ function DashboardLayout({ children }) {
         <div className="md:ml-64">
           <Header />
           <div className="p-10">{children}</div>
+          <Footer />
         </div>
       </div>
     </UserCourseListContext.Provider>
