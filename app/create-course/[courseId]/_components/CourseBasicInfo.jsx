@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { HiOutlinePuzzlePiece } from "react-icons/hi2";
 import EditCourseBasicInfo from "./EditCourseBasicInfo";
 import { db } from "@/configs/db";
-import { CourseList } from "@/configs/Schema";
+import { CourseList } from "@/configs/schema";
 import { eq } from "drizzle-orm";
 import Link from "next/link";
 
@@ -61,9 +61,11 @@ const CourseBasicInfo = ({ course, refreshData, edit = true }) => {
             {" "}
             <HiOutlinePuzzlePiece /> {course?.category}
           </h2>
-          {!edit &&<Link href={"/course/" + course?.courseId + "/start"}>
-            <Button className="w-full mt-5 cursor-pointer">Start</Button>
-          </Link>}
+          {!edit && (
+            <Link href={"/course/" + course?.courseId + "/start"}>
+              <Button className="w-full mt-5 cursor-pointer">Start</Button>
+            </Link>
+          )}
         </div>
         <div>
           <label htmlFor="upload-image">
