@@ -8,23 +8,21 @@ export default function SectionUi() {
           <div>
             <div className="max-w-lg md:max-w-none">
               <h2 className="text-2xl font-semibold text-gray-900 sm:text-3xl">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Design assessments that capture quality, rich evidence of
+                student learning
               </h2>
 
               <p className="mt-4 text-gray-700">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                doloremque saepe architecto maiores repudiandae amet perferendis
-                repellendus, reprehenderit voluptas sequi.
+                AI COURSE GENERATOR helps you generate interactive activities
+                that encourage collaboration, critical thinking, deeper
+                understanding, and rich evidence of learning through
+                project-based activities, interactive chapters, and more!
               </p>
             </div>
           </div>
 
           <div>
-            <img
-              src="https://images.unsplash.com/photo-1731690415686-e68f78e2b5bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              className="rounded"
-              alt=""
-            />
+            <img src="examplettt" className="rounded" alt="" />
           </div>
         </div>
       </div>
