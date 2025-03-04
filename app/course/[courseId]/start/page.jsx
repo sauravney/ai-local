@@ -23,7 +23,7 @@ function CourseStart({ params }) {
       .select()
       .from(CourseList)
       .where(eq(CourseList?.courseId, params?.courseId));
-    console.log(result);
+    // console.log(result);
     setCourse(result[0]);
     GetSelectedChapterContent(0);
     // setSelectedChapter(result[0].courseOutput.course.chapters[0]);
@@ -40,12 +40,12 @@ function CourseStart({ params }) {
         )
       );
     setChapterContent(result[0]);
-    console.log(result);
+    // console.log(result);
   };
 
   return (
     <div>
-      <Header/>
+      <Header />
       {/* Chapter List Sidebar */}
       <div className="fixed md:w-64 hidden md:block h-screen border-r shadow-sm">
         <h2 className="font-medium text-lg bg-gray-300/40 p-4">
@@ -68,7 +68,7 @@ function CourseStart({ params }) {
           ))}
         </div>
       </div>
-      
+
       {/* Content */}
       <div className="md:ml-64">
         <ChapterContent chapter={selectedChapter} content={chapterContent} />

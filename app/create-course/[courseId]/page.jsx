@@ -19,7 +19,7 @@ function CourseLayout({ params }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    console.log(params);
+    // console.log(params);
     params && GetCourse();
   }, [params, user]);
 
@@ -52,12 +52,12 @@ function CourseLayout({ params }) {
         let videoId = "";
         //Generate video url
         service.getVideos(course?.name + ":" + chapter?.name).then((resp) => {
-          console.log(resp);
+          // console.log(resp);
           videoId = resp[0]?.id?.videoId;
         });
         //generate content
         const result = await GenerateChapterContent_AI.sendMessage(PROMPT);
-        console.log(result?.response?.text());
+        // console.log(result?.response?.text());
 
         const content = JSON.parse(result?.response?.text());
 

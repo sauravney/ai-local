@@ -108,7 +108,7 @@ const Hero = () => {
           </div>
           {/* <!-- End Buttons --> */}
         </div>
-        <div className="flex justify-around mt-40 relative mb-40">
+        <div className="flex flex-col md:flex-row items-center justify-around gap-6 p-6 mt-40 relative mb-40">
           <Composition
             className="w-full max-w-md shadow-lg transform translate-y-12"
             img={
